@@ -44,32 +44,26 @@ describe('Card', function () {
         assert.equal(deck.percentHighRanking(), 66.67);
     })
     
-    it.skip('removes top card from deck', function () {
+    it('removes top card from deck', function () {
         let deck = new Deck(cards)
         
         assert.equal(deck.removeCard(), card);
-        // expect(deck.cards).to.be.equalTo([card2, card3]);
-        assert.equal(deck.cards, [card2, card3]);
-        assert.equal(deck.highRankingCards(), [card3]);
+
+        expect(deck.cards).to.eql([card2, card3]);
+        expect(deck.highRankingCards()).to.eql([card3]);
         assert.equal(deck.percentHighRanking(), 50.0);
-    })
-    
-    it.skip('removes top card from deck', function () {
-        let deck = new Deck(cards)
-        
-        assert.equal(deck.removeCard(), card);
-        assert.equal(deck.cards, [card2, card3]);
     })
     
     
     let card4 = new Card('club', '5', 5)
     
-    it.skip('adds a card to the deck', function () {
+    it('adds a card to the botton if the deck', function () {
         let deck = new Deck(cards)
         deck.addCard(card4)
         
-        assert.equal(deck.cards, [card2, card3, card4]);
-        assert.equal(deck.highRankingCards(), [card3]);
+
+        expect(deck.cards).to.eql([card2, card3, card4]);
+        expect(deck.highRankingCards()).to.eql([card3]);
         assert.equal(deck.percentHighRanking(), 33.33);
     })
 })
