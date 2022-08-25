@@ -1,4 +1,4 @@
-let assert = require('chai').assert;
+const { expect, assert } = require('chai')
 let Deck = require('../lib/deck');
 let Card = require('../lib/card');
 
@@ -25,20 +25,20 @@ describe('Card', function () {
         assert.equal(deck.cards, cards);
     })
     
-    it.skip('gives rank of card by index', function () {
+    it('gives rank of card by index', function () {
         let deck = new Deck(cards)
         
         assert.equal(deck.rankOfCardAt(0), 12);
         assert.equal(deck.rankOfCardAt(2), 14);
     })
     
-    it.skip('returns high ranking cards', function () {
+    it('returns high ranking cards', function () {
         let deck = new Deck(cards)
-        
-        assert.equal(deck.highRankingCards(), [card, card3]);
+
+        expect(deck.highRankingCards()).to.eql([card, card3]);
     })
     
-    it.skip('gives percentage of high ranking cards', function () {
+    it('gives percentage of high ranking cards', function () {
         let deck = new Deck(cards)
         
         assert.equal(deck.percentHighRanking(), 66.67);
@@ -48,6 +48,7 @@ describe('Card', function () {
         let deck = new Deck(cards)
         
         assert.equal(deck.removeCard(), card);
+        // expect(deck.cards).to.be.equalTo([card2, card3]);
         assert.equal(deck.cards, [card2, card3]);
         assert.equal(deck.highRankingCards(), [card3]);
         assert.equal(deck.percentHighRanking(), 50.0);
