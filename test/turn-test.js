@@ -60,4 +60,35 @@ describe('Turn', function (){
         expect(turn.player1.deck.cards).to.eql([card2, card5, card8, card1, card3])
         expect(turn.player2.deck.cards).to.eql([card4, card6, card7])
     })
+
+    deck1 = new Deck([card1, card2, card5, card8])
+    deck2 = new Deck([card4, card3, card6, card7])
+
+    player1 = new Player("Megan", deck1)
+    player2 = new Player("Aurora", deck2)
+
+    turn = new Turn(player1, player2)
+
+    it('determines if type of turn is war', function(){
+        assert.equal(turn.type, 'war')
+    })
+
+
+    it('determines winner of war', function(){
+        // whoever has higher card at rank[2]
+        assert.equal(turn.winner, player2)
+    })
+
+    it('piles war cards', function(){
+        turn.pileCards()
+        expect(turn.spoilsOfWar).to.eql([card1, card2, card5, card4, card3, card6])
+    })
+
+    it('awards winner the spoils of war', function(){
+        let winner = turn.winner
+        turn.awardSpoils(winner)
+
+        expect(turn.player1.deck.cards).to.eql([card8])
+        expect(turn.player2.deck.cards).to.eql([card7, card1, card2, card5, card4, card3, card6])
+    })
 })
