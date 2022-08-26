@@ -17,8 +17,8 @@ describe('Turn', function (){
     let deck1 = new Deck([card1, card2, card5, card8])
     let deck2 = new Deck([card3, card4, card6, card7])
 
-    let player1 = new Player("Megan", deck1)
-    let player2 = new Player("Aurora", deck2)
+    let player1 = new Player("Tupac", deck1)
+    let player2 = new Player("Biggie", deck2)
     
     let turn = new Turn(player1, player2)
 
@@ -64,30 +64,55 @@ describe('Turn', function (){
     let deck3 = new Deck([card1, card2, card5, card8])
     let deck4 = new Deck([card4, card3, card6, card7])
 
-    let player3 = new Player("Billy", deck3)
-    let player4 = new Player("Joe", deck4)
+    let player3 = new Player("Nas", deck3)
+    let player4 = new Player("Jay Z", deck4)
 
     let turn2 = new Turn(player3, player4)
-
+    
     it('determines if type of turn is war', function(){
         assert.equal(turn2.type, 'war')
     })
-
-
+    
+    
     it('determines winner of war', function(){
         assert.equal(turn2.winner, player4)
     })
-
+    
     it('piles war cards', function(){
         turn2.pileCards()
         expect(turn2.spoilsOfWar).to.eql([card1, card2, card5, card4, card3, card6])
     })
-
+    
     it('awards winner the spoils of war', function(){
         let winner = turn2.winner
         turn2.awardSpoils(winner)
-
+        
         expect(turn2.player1.deck.cards).to.eql([card8])
         expect(turn2.player2.deck.cards).to.eql([card7, card1, card2, card5, card4, card3, card6])
+    })
+
+    let card9 = new Card('diamond', '8', 8)
+
+    let deck5 = new Deck([card1, card2, card5, card8])
+    let deck6 = new Deck([card4, card3, card9, card7])
+    
+    let player5 = new Player("50 Cent", deck5)
+    let player6 = new Player("Ja Rule", deck6)
+    
+    let turn3 = new Turn(player5, player6)
+
+    it('determines if type of turn is mutually assured destruction', function () {
+        assert.equal(turn3.type, 'mutually assured destruction')
+    })
+
+    it('determines winner type', function () {
+        assert.equal(turn3.type, 'No Winner')
+    })
+
+    it('does not send cards to spoils of war but removes 3 from each player', function () {
+        turn3.pileCards()
+        expect(turn3.spoilsOfWar).to.eql([])
+        expect(turn3.player1.deck.cards).to.eql([card7])
+        expect(turn3.player1.deck.cards).to.eql([card8])
     })
 })
