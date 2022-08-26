@@ -52,4 +52,12 @@ describe('Turn', function (){
         turn.pileCards()
         expect(turn.spoilsOfWar).to.eql([card1, card3])
     })
+    
+    it.skip('awards spoil to winner', function(){
+        turn.pileCards()
+        let winner = turn.winner
+        turn.awardSpoils(winner)
+        expect(turn.player1.deck.cards).to.eql([card2, card5, card8, card1, card3])
+        expect(turn.player2.deck.cards).to.eql([card4, card6, card7])
+    })
 })
