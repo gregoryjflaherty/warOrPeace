@@ -34,4 +34,22 @@ describe('Turn', function (){
         assert.equal(turn.player1, player1);
         assert.equal(turn.player2, player2);
     })
+
+    it.skip('holds spoils of war', function(){
+        expect(turn.spoilsOfWar).to.eql([])
+    })
+
+    it.skip('tells what type of turn it is', function(){
+        assert.equal(turn.type, 'basic')
+    })
+
+    it.skip('tells you the winner', function(){
+        assert.equal(turn.winner, player1)
+    })
+
+    
+    it.skip('takes cards and puts them in the spoils pile', function(){
+        turn.pileCards()
+        expect(turn.spoilsOfWar).to.eql([card1, card3])
+    })
 })
