@@ -61,34 +61,33 @@ describe('Turn', function (){
         expect(turn.player2.deck.cards).to.eql([card4, card6, card7])
     })
 
-    deck1 = new Deck([card1, card2, card5, card8])
-    deck2 = new Deck([card4, card3, card6, card7])
+    let deck3 = new Deck([card1, card2, card5, card8])
+    let deck4 = new Deck([card4, card3, card6, card7])
 
-    player1 = new Player("Megan", deck1)
-    player2 = new Player("Aurora", deck2)
+    let player3 = new Player("Billy", deck3)
+    let player4 = new Player("Joe", deck4)
 
-    turn = new Turn(player1, player2)
+    let turn2 = new Turn(player3, player4)
 
     it('determines if type of turn is war', function(){
-        assert.equal(turn.type, 'war')
+        assert.equal(turn2.type, 'war')
     })
 
 
     it('determines winner of war', function(){
-        // whoever has higher card at rank[2]
-        assert.equal(turn.winner, player2)
+        assert.equal(turn2.winner, player4)
     })
 
     it('piles war cards', function(){
-        turn.pileCards()
-        expect(turn.spoilsOfWar).to.eql([card1, card2, card5, card4, card3, card6])
+        turn2.pileCards()
+        expect(turn2.spoilsOfWar).to.eql([card1, card2, card5, card4, card3, card6])
     })
 
     it('awards winner the spoils of war', function(){
-        let winner = turn.winner
-        turn.awardSpoils(winner)
+        let winner = turn2.winner
+        turn2.awardSpoils(winner)
 
-        expect(turn.player1.deck.cards).to.eql([card8])
-        expect(turn.player2.deck.cards).to.eql([card7, card1, card2, card5, card4, card3, card6])
+        expect(turn2.player1.deck.cards).to.eql([card8])
+        expect(turn2.player2.deck.cards).to.eql([card7, card1, card2, card5, card4, card3, card6])
     })
 })
