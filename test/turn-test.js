@@ -35,28 +35,28 @@ describe('Turn', function (){
         assert.equal(turn.player2, player2);
     })
 
-    it.skip('holds spoils of war', function(){
+    it('holds spoils of war', function(){
         expect(turn.spoilsOfWar).to.eql([])
     })
 
-    it.skip('tells what type of turn it is', function(){
+    it('tells what type of turn it is', function(){
         assert.equal(turn.type, 'basic')
     })
 
-    it.skip('tells you the winner', function(){
+    it('tells you the winner', function(){
         assert.equal(turn.winner, player1)
     })
 
     
-    it.skip('takes cards and puts them in the spoils pile', function(){
+    it('takes cards and puts them in the spoils pile', function(){
         turn.pileCards()
         expect(turn.spoilsOfWar).to.eql([card1, card3])
     })
     
-    it.skip('awards spoil to winner', function(){
-        turn.pileCards()
+    it('awards spoil to winner', function(){
         let winner = turn.winner
         turn.awardSpoils(winner)
+
         expect(turn.player1.deck.cards).to.eql([card2, card5, card8, card1, card3])
         expect(turn.player2.deck.cards).to.eql([card4, card6, card7])
     })
